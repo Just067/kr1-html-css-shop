@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,33 @@
   <meta property="og:image" content="https://Just067.github.io/kr1-html-css-shop/images/preview.jpg">
 
 </head>
+
 <body>
   <header>
-    <div class="site-header">
-      <a class="site-logo" href="index.html">ShopProject</a>
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-          <li><a href="index.html#advantages">Преимущества</a></li>
-          <li><a href="index.html#popular">Популярные товары</a></li>
-          <li><a href="index.html#contacts">Обратная связь</a></li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html">
+              Главная
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="catalog.html">Каталог</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link site-nav__link--active" href="contacts.html">Контакты</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html#popular">
+              Популярные товары
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="order.html">Заявка</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -33,7 +48,7 @@
   <main>
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Каталог</span>
+      <span class="breadcrumbs__current">Контакты</span>
     </nav>
 
     <section class="section">
@@ -54,7 +69,7 @@
       <p>
         Для отправки заявки используйте форму в модальном окне на главной странице.
       </p>
-      <a class="button" href="index.html#contacts">Перейти к форме</a>
+      <a class="button button--primary" href="order.html">Оформить заявку</a>
     </section>
   </main>
 
@@ -63,4 +78,5 @@
     <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
 </body>
+
 </html>

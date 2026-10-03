@@ -1,74 +1,105 @@
-// Получаем модальное окно по id.
-const orderDialog = document.getElementById('order-dialog');
+const callbackDialog = document.getElementById('callback-dialog');
+const openCallbackButton = document.getElementById('open-callback-dialog');
+const closeCallbackButton = document.getElementById('close-callback-dialog');
+const callbackForm = document.getElementById('callback-form');
+const callbackSuccess = document.getElementById('callback-success');
+const pageForm = document.getElementById('order-form-page');
+const pageSuccess = document.getElementById('success-message-page');
 
-// Получаем все кнопки заказа в карточках товаров.
-const orderButtons = document.querySelectorAll('.product-card__button');
+if (pageForm) {
+  pageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-// Получаем кнопку закрытия модального окна.
-const closeDialogButton = document.getElementById('close-order-dialog');
+    const elements = Array.from(pageForm.elements);
 
-// Получаем скрытое поле, в которое будет записан выбранный товар.
-const selectedProductInput = document.getElementById('selected-product');
-
-// Перебираем все кнопки «Заказать».
-orderButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    // Получаем название товара из data-атрибута.
-    const productName = button.dataset.product;
-
-    // Записываем название товара в скрытое поле формы.
-    selectedProductInput.value = productName;
-
-    // Открываем модальное окно.
-    orderDialog.showModal();
-  });
-});
-
-// Закрываем модальное окно по кнопке «Закрыть».
-closeDialogButton.addEventListener('click', () => {
-  orderDialog.close();
-});
-
-// Получаем форму заявки.
-const orderForm = document.getElementById('order-form');
-
-// Получаем сообщение об успешной отправке.
-const successMessage = document.getElementById('success-message');
-
-// Обрабатываем отправку формы.
-orderForm.addEventListener('submit', (event) => {
-  // Отменяем стандартную отправку формы,
-  // потому что backend пока не подключён.
-  event.preventDefault();
-
-  // Сбрасываем предыдущие признаки ошибок.
-  const formElements = Array.from(orderForm.elements);
-
-  formElements.forEach((element) => {
-    if (element.willValidate) {
-      element.removeAttribute('aria-invalid');
-    }
-  });
-
-  // Проверяем встроенные HTML-ограничения формы.
-  if (!orderForm.checkValidity()) {
-    formElements.forEach((element) => {
-      if (element.willValidate && !element.checkValidity()) {
-        element.setAttribute('aria-invalid', 'true');
+    elements.forEach((element) => {
+      if (element.willValidate) {
+        element.removeAttribute('aria-invalid');
       }
     });
 
-    // Показываем стандартные сообщения браузера.
-    orderForm.reportValidity();
-    return;
-  }
+    if (!pageForm.checkValidity()) {
+      elements.forEach((element) => {
+        if (element.willValidate && !element.checkValidity()) {
+          element.setAttribute('aria-invalid', 'true');
+        }
+      });
 
-  // Показываем сообщение об успешной отправке.
-  successMessage.hidden = false;
+      pageForm.reportValidity();
+      return;
+    }
 
-  // Очищаем форму.
-  orderForm.reset();
+    if (pageSuccess) {
+      pageSuccess.hidden = false;
+      pageSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-  // Закрываем модальное окно.
-  orderDialog.close();
-});
+    pageForm.reset();
+
+    setTimeout(() => {
+      if (pageSuccess) {
+        pageSuccess.hidden = true;
+      }
+    }, 2000);
+  });
+}
+
+if (openCallbackButton && callbackDialog) {
+  openCallbackButton.addEventListener('click', () => {
+    if (callbackSuccess) {
+      callbackSuccess.hidden = true;
+    }
+    callbackDialog.showModal();
+  });
+}
+
+if (closeCallbackButton && callbackDialog) {
+  closeCallbackButton.addEventListener('click', () => {
+    callbackDialog.close();
+  });
+}
+
+if (callbackDialog) {
+  callbackDialog.addEventListener('click', (event) => {
+    if (event.target === callbackDialog) {
+      callbackDialog.close();
+    }
+  });
+}
+
+// Обработка отправки формы обратного звонка.
+if (callbackForm && callbackDialog) {
+  callbackForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Сбрасываем предыдущие ошибки.
+    const elements = Array.from(callbackForm.elements);
+
+    elements.forEach((element) => {
+      if (element.willValidate) {
+        element.removeAttribute('aria-invalid');
+      }
+    });
+
+    // Проверяем HTML-валидацию.
+    if (!callbackForm.checkValidity()) {
+      elements.forEach((element) => {
+        if (element.willValidate && !element.checkValidity()) {
+          element.setAttribute('aria-invalid', 'true');
+        }
+      });
+
+      callbackForm.reportValidity();
+      return;
+    }
+
+    callbackSuccess.hidden = false;
+    callbackForm.reset();
+
+    setTimeout(() => {
+      callbackDialog.close();
+      callbackSuccess.hidden = true;
+    }, 1500);
+
+  });
+}

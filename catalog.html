@@ -16,17 +16,30 @@
 
 <body>
   <header>
-    <div class="site-header">
-      <a class="site-logo" href="index.html">ShopProject</a>
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-          <li><a href="index.html#advantages">Преимущества</a></li>
-          <li><a href="index.html#popular">Популярные товары</a></li>
-          <li><a href="index.html#contacts">Обратная связь</a></li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html">
+              Главная
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link site-nav__link--active" href="catalog.html">Каталог</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="contacts.html">Контакты</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html#popular">
+              Популярные товары
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="order.html">Заявка</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -90,25 +103,53 @@
         <h2>Список товаров</h2>
 
         <div class="products-grid">
-          <article class="product-card">
-            <h3>Товар 1</h3>
-            <p>Краткое описание учебного товара.</p>
-            <p>Цена: 1000 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+
+          <article class="product-card product-card--featured product-card--new">
+            <span class="product-card__badge">Новинка</span>
+            <h3 class="product-card__title">Кроссовки Urban Runner</h3>
+            <p class="product-card__description">
+              Лёгкие городские кроссовки с дышащим верхом и мягкой амортизацией.
+            </p>
+            <p class="product-card__price">Цена: 1000 руб.</p>
+            <a class="button button--primary product-card__button" href="product-1.html">
+              Подробнее
+            </a>
+            <a class="button button--secondary product-card__button"
+              href="order.html?product=Кроссовки%20Urban%20Runner">
+              Заказать
+            </a>
           </article>
 
-          <article class="product-card">
-            <h3>Товар 2</h3>
-            <p>Краткое описание учебного товара.</p>
-            <p>Цена: 1500 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+          <article class="product-card product-card--featured product-card--hit">
+            <span class="product-card__badge product-card__badge--hit">Хит</span>
+            <h3 class="product-card__title">Кожаный рюкзак CityPack</h3>
+            <p class="product-card__description">
+              Городской рюкзак из натуральной кожи с отделением для ноутбука.
+            </p>
+            <p class="product-card__price">Цена: 1500 руб.</p>
+            <a class="button button--primary product-card__button" href="product-2.html">
+              Подробнее
+            </a>
+            <a class="button button--secondary product-card__button"
+              href="order.html?product=Кожаный%20рюкзак%20CityPack">
+              Заказать
+            </a>
           </article>
 
-          <article class="product-card">
-            <h3>Товар 3</h3>
-            <p>Краткое описание учебного товара.</p>
-            <p>Цена: 2000 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+          <article class="product-card product-card--discount">
+            <span class="product-card__badge">Скидка −20%</span>
+            <h3 class="product-card__title">Серебряное кольцо Aurora</h3>
+            <p class="product-card__description">
+              Минималистичное кольцо из серебра 925 пробы с фианитом.
+            </p>
+            <p class="product-card__price">Цена: 2000 руб.</p>
+            <a class="button button--primary product-card__button" href="product-3.html">
+              Подробнее
+            </a>
+            <a class="button button--secondary product-card__button"
+              href="order.html?product=Серебряное%20кольцо%20Aurora">
+              Заказать
+            </a>
           </article>
         </div>
       </section>
